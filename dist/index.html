@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>To-Do_App</title>
+</head>
+<body>
+    <div class="app">
+
+        <aside class="sidebar">
+            <header class="header">
+                <h1 class="header-title">My Projects</h1>
+                <form class="sidebar-form" data-new-project-form>
+                    <div class="form-control">
+                        <input type="text" placeholder="Enter Project" data-new-project-input>
+                    </div>
+                    <button class="btn btn-primary">
+                        <i class="fa fa-plus" aria-hidden="true"></i>Add Project
+                    </button>
+                </form>
+            </header>
+            <ul class="sidebar-list" data-projects>
+                <li class="sidebar-item">All projects</li>
+                <li class="sidebar-item">Home <input type="color" class="sidebar-color"></li>
+                <li class="sidebar-item">Work <input type="color" class="sidebar-color"></li>
+            </ul>
+        </aside>
+
+        <main class="main">
+            <header class="header">
+                <div class="tasks-header">
+                    <h1 class="header-title">Project Tasks Summary</h1>
+                    <div class="currently-viewing" data-currently-viewing>You are currently viewing All Projects</div>
+                </div>
+
+                <div class="todo-forms">
+                <!-- CREATE TODO FORM -->
+                <form class="create-todo-form" data-new-todo-form>
+                    <div class="form-control">
+                        <select data-new-todo-select required>
+                            <option value="">All Projects</option>
+                        </select>
+                    </div>
+                    <div class="form-control">
+                        <input type="text" data-new-todo-input placeholder="Enter Task" required>
+                    </div>
+                    <button class="btn task-btn">
+                        <i class="fa fa-plus" aria-hidden="true"></i>Add Task
+                    </button>
+                </form>
+
+                <!-- EDIT TODO FORM -->
+                <form class="edit-todo-form" data-edit-todo-form>
+                    <div class="form-control">
+                        <select data-edit-todo-select required>
+                            <option value="">All Projects</option>
+                        </select>
+                    </div>
+                    <div class="form-control">
+                        <input type="text" data-edit-todo-input placeholder="Enter Task" required>
+                    </div>
+                    <button class="btn task-btn">
+                        Save
+                    </button>
+                </form>
+                </div>
+            </header>
+
+            <!-- CARDS -->
+            <section class="todos-container" data-cards>
+                <div class="todo" style="border-color: antiquewhite;">
+                    <div class="todo-tag" style="background-color: lightgray; color: black;">Work</div>
+                    <p class="todo-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque inventore eligendi ea molestias!</p>
+                    <div class="todo-actions">
+                        <i class="far fa-edit"></i>
+                        <i class="far fa-trash-alt"></i>
+                    </div>
+                </div>
+                <div class="todo" style="border-color: antiquewhite;">
+                    <div class="todo-tag" style="background-color: lightgray; color: black;">Work</div>
+                    <p class="todo-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque inventore eligendi ea molestias!</p>
+                    <div class="todo-actions">
+                        <i class="far fa-edit"></i>
+                        <i class="far fa-trash-alt"></i>
+                    </div>
+                </div>
+                <div class="todo" style="border-color: antiquewhite;">
+                    <div class="todo-tag" style="background-color: lightgray; color: black;">Work</div>
+                    <p class="todo-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque inventore eligendi ea molestias!</p>
+                    <div class="todo-actions">
+                        <i class="far fa-edit"></i>
+                        <i class="far fa-trash-alt"></i>
+                    </div>
+                </div>
+                <div class="todo" style="border-color: antiquewhite;">
+                    <div class="todo-tag" style="background-color: lightgray; color: black;">Work</div>
+                    <p class="todo-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque inventore eligendi ea molestias!</p>
+                    <div class="todo-actions">
+                        <i class="far fa-edit"></i>
+                        <i class="far fa-trash-alt"></i>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>
