@@ -4,21 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>To-Do_App</title>
+    <title>To-Do-App</title>
 </head>
 <body>
     <div class="app">
 
+        <!-- SIDEBAR -->
         <aside class="sidebar">
             <header class="header">
                 <h1 class="header-title">My Projects</h1>
                 <form class="sidebar-form" data-new-project-form>
                     <div class="form-control">
-                        <input type="text" placeholder="Enter Project" data-new-project-input>
+                        <input type="text" placeholder="Enter new project" data-new-project-input>
                     </div>
-                    <button class="btn btn-primary">
-                        <i class="fa fa-plus" aria-hidden="true"></i>Add Project
-                    </button>
+                    <button class="btn btn-primary">Add Project</button>
                 </form>
             </header>
             <ul class="sidebar-list" data-projects>
@@ -28,27 +27,31 @@
             </ul>
         </aside>
 
+        <!-- MAIN -->
         <main class="main">
             <header class="header">
                 <div class="tasks-header">
                     <h1 class="header-title">Project Tasks Summary</h1>
-                    <div class="currently-viewing" data-currently-viewing>You are currently viewing All Projects</div>
+                    <div class="currently-viewing" data-currently-viewing></div>
                 </div>
 
                 <div class="todo-forms">
                 <!-- CREATE TODO FORM -->
                 <form class="create-todo-form" data-new-todo-form>
-                    <div class="form-control">
+                    <div class="form-control select-project">
                         <select data-new-todo-select required>
+                            <!--
                             <option value="">All Projects</option>
+                            -->
                         </select>
                     </div>
                     <div class="form-control">
-                        <input type="text" data-new-todo-input placeholder="Enter Task" required>
+                        <input type="text" data-new-todo-input placeholder="Enter new task" required>
+                        <!--
+                        <input type="date">
+                        -->
                     </div>
-                    <button class="btn task-btn">
-                        <i class="fa fa-plus" aria-hidden="true"></i>Add Task
-                    </button>
+                    <button class="btn task-btn">Add Task</button>
                 </form>
 
                 <!-- EDIT TODO FORM -->

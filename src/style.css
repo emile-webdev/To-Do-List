@@ -13,8 +13,10 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: var(--black);
 }
-.main-title {
-    text-align: center;
+/* --- SIDEBAR --- */
+.sidebar {
+    background-color: rgb(68, 68, 68);
+    height: 100vh;
 }
 h1 {
     color: var(--white);
@@ -23,11 +25,12 @@ h1 {
     display: flex;
 }
 .btn {
+    font-size: 16px;
     font-weight: bold;
     background-color: var(--yellow);
     color: var(--black);
     display: inline-block;
-    padding: 10px 30px;
+    padding: 8px 30px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -44,15 +47,6 @@ h1 {
     font-size: 1.4rem;
     font-weight: bold;
     margin: 10px 0;
-}
-.currently-viewing {
-    font-size: 1rem;
-    color: var(--white);
-}
-.currently-viewing > span {
-    font-weight: bold;
-    color: var(--red);
-    cursor: pointer;
 }
 .sidebar-form .form-control {
     margin: 10px 0;
@@ -111,6 +105,21 @@ h1 {
 .main .tasks-header {
     display: flex;
     flex-direction: column;
+    margin-bottom: 20px;
+}
+.currently-viewing {
+    font-size: 1rem;
+    color: var(--white);
+}
+.delete-btn {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--red);
+    padding: 5px 10px;
+    margin-left: 20px;
+    border: 1px solid var(--white);
+    border-radius: 5px;
+    cursor: pointer;
 }
 .todo-forms {
     display: flex;
@@ -118,6 +127,12 @@ h1 {
     justify-content: space-between;
     margin: 10px;
     width: 80%;
+}
+.form-control {
+    margin: 0 10px;
+}
+.select-project {
+    width: 250px;
 }
 /* --- CREATE AND EDIT FORM --- */
 .create-todo-form input, .edit-todo-form input, .create-todo-form select, .edit-todo-form select {
