@@ -3,25 +3,25 @@ import './style.css';
 // --- GLOBAL VARIABLES PROJECTS ---
 const newProjectForm = document.querySelector('[data-new-project-form]');
 const newProjectInput = document.querySelector('[data-new-project-input]');
-const projectsContainer = document.querySelector('[data-projects]');
+const projectsList = document.querySelector('[data-projects-list]');
 
 // --- GLOBAL VARIABLES TASKS
-const newTodoForm = document.querySelector('[data-new-todo-form]');
-const newTodoSelect = document.querySelector('[data-new-todo-select]');
-const newTodoInput = document.querySelector('[data-new-todo-input]');
-const editTodoForm = document.querySelector('[data-edit-todo-form]');
-const editTodoSelect = document.querySelector('[data-edit-todo-select]');
-const editTodoInput = document.querySelector('[data-edit-todo-input]');
-const todosContainer = document.querySelector('[data-cards]');
-const currentlyViewing = document.querySelector('[data-currently-viewing]');
+const newTaskForm = document.querySelector('[data-new-task-form]');
+const newTaskSelect = document.querySelector('[data-new-task-select]');
+const newTaskInput = document.querySelector('[data-new-task-input]');
+const editTaskForm = document.querySelector('[data-edit-task-form]');
+const editTaskSelect = document.querySelector('[data-edit-task-select]');
+const editTaskInput = document.querySelector('[data-edit-task-input]');
+const cardsContainer = document.querySelector('[data-cards]');
+const selectedProject = document.querySelector('[data-selected-project]');
 
 // --- LOCAL STORAGE KEYS --- 
 const LOCAL_STORAGE_PROJECTS_KEY = 'LOCAL_STORAGE_PROJECTS_KEY';
-const LOCAL_STORAGE_TODOS_KEY = 'LOCAL_STORAGE_TODOS_KEY';
+const LOCAL_STORAGE_TASKS_KEY = 'LOCAL_STORAGE_TASKS_KEY';
 const LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY = 'LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY';
 
 let projects = JSON.parse(localStorage.getItem(LOCAL_STORAGE_PROJECTS_KEY)) || [];
-let todos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_TODOS_KEY)) || [];
+let tasks = JSON.parse(localStorage.getItem(LOCAL_STORAGE_TASKS_KEY)) || [];
 let selectedProjectId = localStorage.getItem(LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY);
 
 // --- EVENT: Add Project ---
@@ -49,62 +49,62 @@ newProjectForm.addEventListener('submit', (e) => {
 })
 
 // --- EVENT: Add Task ---
-newTodoForm.addEventListener('submit', (e) => {
+newTaskForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    todos.push({ 
+    tasks.push({ 
         _id: Date.now().toString(), 
-        projectId: newTodoSelect.value,
-        todo: newTodoInput.value 
+        projectId: newTaskSelect.value,
+        task: newTaskInput.value 
     })
 
     // --- Clear the form ---
-    newTodoSelect.value = '';
-    newTodoInput.value = '';
+    newTaskSelect.value = '';
+    newTaskInput.value = '';
 
     saveAndRender();
 })
 
-// --- EVENT: Edit todo ---
-let todoEdit = null;
+// --- EVENT: Edit task ---
+let taskEdit = null;
 
-editTodoForm.addEventListener('submit', (e) => {
+editTaskForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    todoEdit.projectId = editTodoSelect.value;
-    todoEdit.todo = editTodoInput.value;
+    taskEdit.projectId = editTaskSelect.value;
+    taskEdit.task = editTaskInput.value;
 
-    editTodoForm.style.display = 'none';
-    newTodoForm.style.display = 'flex';
+    editTaskForm.style.display = 'none';
+    newTaskForm.style.display = 'flex';
 
-    editTodoForm.value = '';
-    editTodoInput.value = '';
+    editTaskForm.value = '';
+    editTaskInput.value = '';
 
     saveAndRender();
 })
 
-// --- EVENT: Show edit form or delete todo card ---
-todosContainer.addEventListener('click', (e) => {
+// --- EVENT: Show edit form or delete task card ---
+cardsContainer.addEventListener('click', (e) => {
     if(e.target.classList[1] === 'fa-trash-alt') {
-        const todoDeleteIndex = todos.findIndex((todo) => todo._id === e.target.dataset.editTodo);
-        todos.splice(todoDeleteIndex, 1);
+        const taskDeleteIndex = tasks.findIndex((task) => task._id === e.target.dataset.editTask);
+        tasks.splice(taskDeleteIndex, 1);
 
         saveAndRender();
     }
 
     if(e.target.classList[1] === 'fa-edit') {
-        newTodoForm.style.display = 'none';
-        editTodoForm.style.display = 'flex';
+        newTaskForm.style.display = 'none';
+        editTaskForm.style.display = 'flex';
 
-        todoEdit = todos.find((todo) => todo._id === e.target.dataset.editTodo);
+        taskEdit = tasks.find((task) => task._id === e.target.dataset.editTask);
 
-        editTodoSelect.value = todoEdit.projectId;
-        editTodoInput.value = todoEdit.todo;
+        editTaskSelect.value = taskEdit.projectId;
+        editTaskInput.value = taskEdit.task;
     }
 })
 
 // --- EVENT: Get selected project id ---
-projectsContainer.addEventListener('click', (e) => {
+projectsList.addEventListener('click', (e) => {
     if(e.target.tagName.toLowerCase() === 'li') {
         if(!e.target.dataset.projectId) {
             selectedProjectId = null;
@@ -117,7 +117,7 @@ projectsContainer.addEventListener('click', (e) => {
 })
 
 // --- EVENT: Get selected project color ---
-projectsContainer.addEventListener('change', (e) => {
+projectsList.addEventListener('change', (e) => {
     if(e.target.tagName.toLowerCase() === 'input') {
         const newProjectColor = e.target.value;
         const projectId = e.target.parentElement.dataset.projectId;
@@ -130,10 +130,10 @@ projectsContainer.addEventListener('change', (e) => {
 })
 
 // --- EVENT: Delete selected project ---
-currentlyViewing.addEventListener('click', (e) => {
+selectedProject.addEventListener('click', (e) => {
     if(e.target.tagName.toLowerCase() === 'span') {
         projects = projects.filter((project) => project._id != selectedProjectId);
-        todos = todos.filter((todo) => todo.projectId != selectedProjectId);
+        tasks = tasks.filter((task) => task.projectId != selectedProjectId);
         selectedProjectId = null;
 
         saveAndRender();
@@ -147,63 +147,62 @@ function saveAndRender() {
 
 function save() {
     localStorage.setItem(LOCAL_STORAGE_PROJECTS_KEY, JSON.stringify(projects));
-    localStorage.setItem(LOCAL_STORAGE_TODOS_KEY, JSON.stringify(todos));
+    localStorage.setItem(LOCAL_STORAGE_TASKS_KEY, JSON.stringify(tasks));
     localStorage.setItem(LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY, selectedProjectId);
 }
 
 function render() {
-    clearChildElements(projectsContainer);
-    clearChildElements(newTodoSelect);
-    clearChildElements(editTodoSelect);
-    clearChildElements(todosContainer);
+    clearChildElements(projectsList);
+    clearChildElements(newTaskSelect);
+    clearChildElements(editTaskSelect);
+    clearChildElements(cardsContainer);
 
     renderProjects();
     renderFormOptions();
-    renderTodos();
+    renderTasks();
 
-    // --- Set the current viewing project ---
+    // --- Set the selected project ---
     if(!selectedProjectId || selectedProjectId === 'null') {
-        currentlyViewing.innerHTML = `Selected project: <strong>All Projects</strong>`;
+        selectedProject.innerHTML = `Selected project: <strong>All Projects</strong>`;
     } else {
         const currentProject = projects.find((project) => project._id === selectedProjectId);
-        currentlyViewing.innerHTML = `Selected project: <strong>${currentProject.project}</strong><span class="delete-btn currently-viewing">Delete Project</span>`;
+        selectedProject.innerHTML = `Selected project: <strong>${currentProject.project}</strong><span class="delete-btn selected-project">Delete Project</span>`;
     }
 }
 
 function renderProjects() {
-    projectsContainer.innerHTML += `<li class="sidebar-item">All projects</li>`;
+    projectsList.innerHTML += `<li class="projects-item">All projects</li>`;
     projects.forEach(({ _id, project, color }) => {
-        projectsContainer.innerHTML += `<li class="sidebar-item" data-project-id=${_id}>${project}<input type="color" value=${color} class="sidebar-color"></li>`;
+        projectsList.innerHTML += `<li class="projects-item" data-project-id=${_id}>${project}<input type="color" value=${color} class="projects-color"></li>`;
     })
 }
 
 function renderFormOptions() {
-    newTodoSelect.innerHTML += `<option value="">All Projects</option>`;
-    editTodoSelect.innerHTML += `<option value="">All Projects</option>`;
+    newTaskSelect.innerHTML += `<option value="">All Projects</option>`;
+    editTaskSelect.innerHTML += `<option value="">All Projects</option>`;
     projects.forEach(({ _id, project }) => {
-        newTodoSelect.innerHTML += `<option value=${_id}>${project}</option>`;
-        editTodoSelect.innerHTML += `<option value=${_id}>${project}</option>`;
+        newTaskSelect.innerHTML += `<option value=${_id}>${project}</option>`;
+        editTaskSelect.innerHTML += `<option value=${_id}>${project}</option>`;
     })
 }
 
-function renderTodos() {
-    let todosRender = todos;
+function renderTasks() {
+    let tasksRender = tasks;
 
     if(selectedProjectId && selectedProjectId != 'null') {
-        todosRender = todos.filter((todo) => todo.projectId === selectedProjectId);
-
+        tasksRender = tasks.filter((task) => task.projectId === selectedProjectId);
     }
 
-    todosRender.forEach(({ _id, projectId, todo }) => {
+    tasksRender.forEach(({ _id, projectId, task }) => {
         const { color, project } = projects.find(({ _id }) => _id === projectId);
         const backgroundColor = convertHexToRGBA(color, 20);
-        todosContainer.innerHTML += `
-            <div class="todo" style="border-color: ${color};">
-                <div class="todo-tag" style="background-color: ${backgroundColor}; color: ${color};">${project}</div>
-                <p class="todo-description">${todo}</p>
-                <div class="todo-actions">
-                    <i class="far fa-edit" data-edit-todo=${_id}></i>
-                    <i class="far fa-trash-alt" data-delete-todo=${_id}></i>
+        cardsContainer.innerHTML += `
+            <div class="task" style="border-color: ${color};">
+                <div class="task-tag" style="background-color: ${backgroundColor}; color: ${color};">${project}</div>
+                <p class="task-description">${task}</p>
+                <div class="task-actions">
+                    <i class="far fa-edit" data-edit-task=${_id}></i>
+                    <i class="far fa-trash-alt" data-delete-task=${_id}></i>
                 </div>
             </div>
         `

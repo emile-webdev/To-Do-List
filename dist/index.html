@@ -7,23 +7,25 @@
     <title>To-Do-App</title>
 </head>
 <body>
-    <div class="app">
+    <div class="wrapper">
 
         <!-- SIDEBAR -->
         <aside class="sidebar">
             <header class="header">
                 <h1 class="header-title">My Projects</h1>
-                <form class="sidebar-form" data-new-project-form>
+                <form class="projects-form" data-new-project-form>
                     <div class="form-control">
                         <input type="text" placeholder="Enter new project" data-new-project-input>
                     </div>
-                    <button class="btn btn-primary">Add Project</button>
+                    <button class="btn">Add Project</button>
                 </form>
             </header>
-            <ul class="sidebar-list" data-projects>
-                <li class="sidebar-item">All projects</li>
-                <li class="sidebar-item">Home <input type="color" class="sidebar-color"></li>
-                <li class="sidebar-item">Work <input type="color" class="sidebar-color"></li>
+            <ul class="projects-list" data-projects-list>
+                <!--
+                <li class="projects-item">All projects</li>
+                <li class="projects-item">Home <input type="color" class="projects-color"></li>
+                <li class="projects-item">Work <input type="color" class="projects-color"></li>
+                -->
             </ul>
         </aside>
 
@@ -32,47 +34,51 @@
             <header class="header">
                 <div class="tasks-header">
                     <h1 class="header-title">Project Tasks Summary</h1>
-                    <div class="currently-viewing" data-currently-viewing></div>
+                    <div class="selected-project" data-selected-project></div>
+                    <button class="btn task-btn">Add Task</button>
                 </div>
 
-                <div class="todo-forms">
-                <!-- CREATE TODO FORM -->
-                <form class="create-todo-form" data-new-todo-form>
-                    <div class="form-control select-project">
-                        <select data-new-todo-select required>
+                <div class="task-forms">
+                    <!-- CREATE TASK FORM -->
+                    <form class="create-task-form" data-new-task-form>
+                        <div class="form-control select-project">
+                            <select data-new-task-select required>
+                                <!--
+                                <option value="">All Projects</option>
+                                -->
+                            </select>
+                        </div>
+                        <div class="form-control">
+                            <input type="text" data-new-task-input placeholder="Enter new task" required>
                             <!--
-                            <option value="">All Projects</option>
+                            <input type="date">
                             -->
-                        </select>
-                    </div>
-                    <div class="form-control">
-                        <input type="text" data-new-todo-input placeholder="Enter new task" required>
-                        <!--
-                        <input type="date">
-                        -->
-                    </div>
-                    <button class="btn task-btn">Add Task</button>
-                </form>
+                        </div>
+                        <button class="btn submit-btn">Submit</button>
+                    </form>
 
-                <!-- EDIT TODO FORM -->
-                <form class="edit-todo-form" data-edit-todo-form>
-                    <div class="form-control">
-                        <select data-edit-todo-select required>
-                            <option value="">All Projects</option>
-                        </select>
-                    </div>
-                    <div class="form-control">
-                        <input type="text" data-edit-todo-input placeholder="Enter Task" required>
-                    </div>
-                    <button class="btn task-btn">
-                        Save
-                    </button>
-                </form>
+                    <!-- EDIT TASK FORM -->
+                    <form class="edit-task-form" data-edit-task-form>
+                        <div class="form-control">
+                            <select data-edit-task-select required>
+                                <!--
+                                <option value="">All Projects</option>
+                                -->
+                            </select>
+                        </div>
+                        <div class="form-control">
+                            <input type="text" data-edit-task-input placeholder="Enter Task" required>
+                        </div>
+                        <button class="btn task-btn">
+                            Save
+                        </button>
+                    </form>
                 </div>
             </header>
 
             <!-- CARDS -->
-            <section class="todos-container" data-cards>
+            <section class="cards-container" data-cards>
+                <!--
                 <div class="todo" style="border-color: antiquewhite;">
                     <div class="todo-tag" style="background-color: lightgray; color: black;">Work</div>
                     <p class="todo-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque inventore eligendi ea molestias!</p>
@@ -105,6 +111,7 @@
                         <i class="far fa-trash-alt"></i>
                     </div>
                 </div>
+                -->
             </section>
         </main>
 
