@@ -2,6 +2,7 @@
     --white: antiquewhite;
     --yellow: goldenrod;
     --black: rgb(48, 48, 48);
+    --grey: rgb(68, 68, 68);
     --red: tomato;
 }
 * {
@@ -18,8 +19,8 @@ body {
 }
 /* --- SIDEBAR --- */
 .sidebar {
-    background-color: rgb(68, 68, 68);
-    height: 100vh;
+    background-color: var(--grey);
+    height: 900px;
 }
 h1 {
     color: var(--white);
@@ -42,6 +43,9 @@ h1 {
     padding: 1.6rem;
     position: sticky;
     top: 0;
+}
+.sidebar .header {
+    background-color: var(--grey);
 }
 .header-title {
     font-size: 1.4rem;
@@ -68,6 +72,9 @@ h1 {
 .projects-list {
     padding: 1.6rem;
 }
+.projects-list input {
+    background-color: var(--grey);
+}
 .projects-item {
     font-size: 1rem;
     color: var(--white);
@@ -76,6 +83,9 @@ h1 {
     width: 100%;
     margin: 16px 0;
     cursor: pointer;
+}
+.projects-item:hover {
+    transform: scale(1.02);
 }
 .projects-item.active {
     font-weight: bold;
@@ -126,16 +136,21 @@ h1 {
     flex-direction: column;
     justify-content: space-between;
     margin: 10px;
-    width: 80%;
-}
-.form-control {
-    margin: 0 10px;
-}
-.select-project {
-    width: 250px;
+    width: 100%;
 }
 .task-btn {
     margin: 20px;
+}
+.form-control, .submit-btn {
+    width: 350px;
+}
+/*
+.select-project {
+    width: 250px;
+}
+*/
+.submit-btn {
+    margin: 5px;
 }
 /* --- CREATE AND EDIT FORM --- */
 .create-task-form input, .edit-task-form input, .create-task-form select, .edit-task-form select {
@@ -152,18 +167,21 @@ h1 {
 }
 .create-task-form, .edit-task-form {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    flex: 0.8;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
 }
 .create-task-form input, .edit-task-form input {
     width: 350px;
 }
+/*
 .submit-btn {
-    width: 150px;
+    width: 350px;
     margin-bottom: 5px;
 }
-.edit-task-form {
+*/
+.create-task-form, .edit-task-form {
     display: none;
 }
 /* --- CARDS --- */
@@ -177,7 +195,7 @@ h1 {
 .task {
     background-color: antiquewhite;
     color: var(--black);
-    border-top: 6px solid;
+    border: 6px solid;
     border-radius: 10px;
     padding: 20px;
     display: flex;
@@ -203,4 +221,10 @@ h1 {
     margin-right: 1.6rem;
     opacity: 0.5;
     cursor: pointer;
+}
+.fa-edit:hover {
+    color: green;
+}
+.fa-trash-alt:hover {
+    color: red;
 }

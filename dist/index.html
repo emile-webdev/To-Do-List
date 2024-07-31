@@ -35,7 +35,7 @@
                 <div class="tasks-header">
                     <h1 class="header-title">Project Tasks Summary</h1>
                     <div class="selected-project" data-selected-project></div>
-                    <button class="btn task-btn">Add Task</button>
+                    <button class="btn task-btn" data-open-task-form>Add Task</button>
                 </div>
 
                 <div class="task-forms">
@@ -49,12 +49,15 @@
                             </select>
                         </div>
                         <div class="form-control">
-                            <input type="text" data-new-task-input placeholder="Enter new task" required>
-                            <!--
-                            <input type="date">
-                            -->
+                            <input type="text" data-new-task-input placeholder="Task description" required>
+                            <input type="date" data-new-task-date>
+                            <select id="">
+                                <option value="">priority low</option>
+                                <option value="">priority medium</option>
+                                <option value="">priority high</option>
+                            </select>
+                            <button class="btn submit-btn">Submit</button>
                         </div>
-                        <button class="btn submit-btn">Submit</button>
                     </form>
 
                     <!-- EDIT TASK FORM -->

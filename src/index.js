@@ -6,9 +6,11 @@ const newProjectInput = document.querySelector('[data-new-project-input]');
 const projectsList = document.querySelector('[data-projects-list]');
 
 // --- GLOBAL VARIABLES TASKS
+const openTaskForm = document.querySelector('[data-open-task-form]');
 const newTaskForm = document.querySelector('[data-new-task-form]');
 const newTaskSelect = document.querySelector('[data-new-task-select]');
 const newTaskInput = document.querySelector('[data-new-task-input]');
+//const newTaskDate = document.querySelector('[data-new-task-date]');
 const editTaskForm = document.querySelector('[data-edit-task-form]');
 const editTaskSelect = document.querySelector('[data-edit-task-select]');
 const editTaskInput = document.querySelector('[data-edit-task-input]');
@@ -48,19 +50,27 @@ newProjectForm.addEventListener('submit', (e) => {
     saveAndRender()
 })
 
-// --- EVENT: Add Task ---
+// --- EVENT: Open Task Form
+openTaskForm.addEventListener('click', () => {
+    newTaskForm.style.display = 'flex';
+})
+
+// --- EVENT: Submit Task ---
 newTaskForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     tasks.push({ 
         _id: Date.now().toString(), 
         projectId: newTaskSelect.value,
-        task: newTaskInput.value 
+        task: newTaskInput.value,
+        //date: newTaskDate.value
     })
 
     // --- Clear the form ---
     newTaskSelect.value = '';
     newTaskInput.value = '';
+
+    newTaskForm.style.display = 'none';
 
     saveAndRender();
 })
@@ -79,6 +89,8 @@ editTaskForm.addEventListener('submit', (e) => {
 
     editTaskForm.value = '';
     editTaskInput.value = '';
+
+    newTaskForm.style.display = 'none';
 
     saveAndRender();
 })
