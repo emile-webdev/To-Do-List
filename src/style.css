@@ -210,8 +210,13 @@ h1 {
 }
 .task-description {
     font-size: 1rem;
-    margin: 1rem 0 2rem 0;
+    font-weight: 900;
+    margin: 20px 0 10px 0;
     word-break: break-all;
+}
+.task-date, .task-priority {
+    font-size: 14px;
+    margin-bottom: 10px;
 }
 .task-actions {
     margin-top: auto;
@@ -224,7 +229,9 @@ h1 {
 }
 .fa-edit:hover {
     color: green;
+    transform: scale(1.2);
 }
 .fa-trash-alt:hover {
     color: red;
+    transform: scale(1.2);
 }

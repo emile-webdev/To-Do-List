@@ -10,10 +10,13 @@ const openTaskForm = document.querySelector('[data-open-task-form]');
 const newTaskForm = document.querySelector('[data-new-task-form]');
 const newTaskSelect = document.querySelector('[data-new-task-select]');
 const newTaskInput = document.querySelector('[data-new-task-input]');
-//const newTaskDate = document.querySelector('[data-new-task-date]');
+const newTaskDate = document.querySelector('[data-new-task-date]');
+const taskPriority = document.querySelector('[data-task-priority]');
 const editTaskForm = document.querySelector('[data-edit-task-form]');
 const editTaskSelect = document.querySelector('[data-edit-task-select]');
 const editTaskInput = document.querySelector('[data-edit-task-input]');
+const editTaskDate = document.querySelector('[data-edit-task-date]');
+const editTaskPriority = document.querySelector('[data-edit-task-priority]');
 const cardsContainer = document.querySelector('[data-cards]');
 const selectedProject = document.querySelector('[data-selected-project]');
 
@@ -35,7 +38,8 @@ newProjectForm.addEventListener('submit', (e) => {
     const isProjectEmpty = !project || !project.trim().length;
 
     if(isProjectEmpty) {
-        return console.log('Please enter a task');
+        alert('Please enter a new project');
+        return;
     }
 
     projects.push({ 
@@ -63,12 +67,15 @@ newTaskForm.addEventListener('submit', (e) => {
         _id: Date.now().toString(), 
         projectId: newTaskSelect.value,
         task: newTaskInput.value,
-        //date: newTaskDate.value
+        date: newTaskDate.value,
+        priority: taskPriority.value
     })
 
     // --- Clear the form ---
     newTaskSelect.value = '';
     newTaskInput.value = '';
+    newTaskDate.value = '';
+    taskPriority.value = '';
 
     newTaskForm.style.display = 'none';
 
@@ -83,12 +90,16 @@ editTaskForm.addEventListener('submit', (e) => {
 
     taskEdit.projectId = editTaskSelect.value;
     taskEdit.task = editTaskInput.value;
+    taskEdit.date = editTaskDate.value;
+    taskEdit.priority = editTaskPriority.value;
 
     editTaskForm.style.display = 'none';
     newTaskForm.style.display = 'flex';
 
     editTaskForm.value = '';
     editTaskInput.value = '';
+    editTaskDate.value = '';
+    editTaskPriority.value = '';
 
     newTaskForm.style.display = 'none';
 
@@ -112,6 +123,8 @@ cardsContainer.addEventListener('click', (e) => {
 
         editTaskSelect.value = taskEdit.projectId;
         editTaskInput.value = taskEdit.task;
+        editTaskDate.value = taskEdit.date;
+        editTaskPriority.value = taskEdit.priority;
     }
 })
 
@@ -205,13 +218,15 @@ function renderTasks() {
         tasksRender = tasks.filter((task) => task.projectId === selectedProjectId);
     }
 
-    tasksRender.forEach(({ _id, projectId, task }) => {
+    tasksRender.forEach(({ _id, projectId, task, date, priority }) => {
         const { color, project } = projects.find(({ _id }) => _id === projectId);
         const backgroundColor = convertHexToRGBA(color, 20);
         cardsContainer.innerHTML += `
             <div class="task" style="border-color: ${color};">
                 <div class="task-tag" style="background-color: ${backgroundColor}; color: ${color};">${project}</div>
                 <p class="task-description">${task}</p>
+                <p class="task-date">Due date: <br>${date}</p>
+                <p class="task-priority">Priority: ${priority}</p> 
                 <div class="task-actions">
                     <i class="far fa-edit" data-edit-task=${_id}></i>
                     <i class="far fa-trash-alt" data-delete-task=${_id}></i>

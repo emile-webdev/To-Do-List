@@ -51,10 +51,10 @@
                         <div class="form-control">
                             <input type="text" data-new-task-input placeholder="Task description" required>
                             <input type="date" data-new-task-date>
-                            <select id="">
-                                <option value="">priority low</option>
-                                <option value="">priority medium</option>
-                                <option value="">priority high</option>
+                            <select id="" data-task-priority>
+                                <option value="low">priority low</option>
+                                <option value="medium">priority medium</option>
+                                <option value="high">priority high</option>
                             </select>
                             <button class="btn submit-btn">Submit</button>
                         </div>
@@ -71,10 +71,14 @@
                         </div>
                         <div class="form-control">
                             <input type="text" data-edit-task-input placeholder="Enter Task" required>
+                            <input type="date" data-edit-task-date>
+                            <select id="" data-edit-task-priority>
+                                <option value="low">priority low</option>
+                                <option value="medium">priority medium</option>
+                                <option value="high">priority high</option>
+                            </select>
                         </div>
-                        <button class="btn task-btn">
-                            Save
-                        </button>
+                        <button class="btn task-btn">Save</button>
                     </form>
                 </div>
             </header>
