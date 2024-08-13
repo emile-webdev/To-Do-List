@@ -35,9 +35,9 @@ newProjectForm.addEventListener('submit', (e) => {
 
     const project = newProjectInput.value;
     // --- Check input ---
-    const isProjectEmpty = !project || !project.trim().length;
+    const emptyProject = !project || !project.trim().length;
 
-    if(isProjectEmpty) {
+    if(emptyProject) {
         alert('Please enter a new project');
         return;
     }
@@ -54,7 +54,7 @@ newProjectForm.addEventListener('submit', (e) => {
     saveAndRender()
 })
 
-// --- EVENT: Open Task Form
+// --- EVENT: Open Task Form ---
 openTaskForm.addEventListener('click', () => {
     newTaskForm.style.display = 'flex';
 })
@@ -106,8 +106,9 @@ editTaskForm.addEventListener('submit', (e) => {
     saveAndRender();
 })
 
-// --- EVENT: Show edit form or delete task card ---
+// --- EVENT: Show edit form & delete task card ---
 cardsContainer.addEventListener('click', (e) => {
+    
     if(e.target.classList[1] === 'fa-trash-alt') {
         const taskDeleteIndex = tasks.findIndex((task) => task._id === e.target.dataset.editTask);
         tasks.splice(taskDeleteIndex, 1);
