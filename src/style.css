@@ -151,11 +151,6 @@ h1 {
 .form-control, .submit-btn {
     width: 350px;
 }
-/*
-.select-project {
-    width: 250px;
-}
-*/
 .submit-btn {
     margin: 5px;
 }
@@ -182,12 +177,6 @@ h1 {
 .create-task-form input, .edit-task-form input {
     width: 350px;
 }
-/*
-.submit-btn {
-    width: 350px;
-    margin-bottom: 5px;
-}
-*/
 .create-task-form, .edit-task-form {
     display: none;
 }
