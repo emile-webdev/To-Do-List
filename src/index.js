@@ -1,4 +1,10 @@
 import './style.css';
+import { 
+    LOCAL_STORAGE_PROJECTS_KEY,
+    LOCAL_STORAGE_TASKS_KEY,
+    LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY,
+    save
+} from './localStorage';
 
 // --- GLOBAL VARIABLES PROJECTS ---
 const newProjectForm = document.querySelector('[data-new-project-form]');
@@ -19,11 +25,6 @@ const editTaskDate = document.querySelector('[data-edit-task-date]');
 const editTaskPriority = document.querySelector('[data-edit-task-priority]');
 const cardsContainer = document.querySelector('[data-cards]');
 const selectedProject = document.querySelector('[data-selected-project]');
-
-// --- LOCAL STORAGE KEYS --- 
-const LOCAL_STORAGE_PROJECTS_KEY = 'LOCAL_STORAGE_PROJECTS_KEY';
-const LOCAL_STORAGE_TASKS_KEY = 'LOCAL_STORAGE_TASKS_KEY';
-const LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY = 'LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY';
 
 let projects = JSON.parse(localStorage.getItem(LOCAL_STORAGE_PROJECTS_KEY)) || [];
 let tasks = JSON.parse(localStorage.getItem(LOCAL_STORAGE_TASKS_KEY)) || [];
@@ -108,7 +109,7 @@ editTaskForm.addEventListener('submit', (e) => {
 
 // --- EVENT: Show edit form & delete task card ---
 cardsContainer.addEventListener('click', (e) => {
-    
+
     if(e.target.classList[1] === 'fa-trash-alt') {
         const taskDeleteIndex = tasks.findIndex((task) => task._id === e.target.dataset.editTask);
         tasks.splice(taskDeleteIndex, 1);
@@ -169,12 +170,6 @@ selectedProject.addEventListener('click', (e) => {
 function saveAndRender() {
     save();
     render();
-}
-
-function save() {
-    localStorage.setItem(LOCAL_STORAGE_PROJECTS_KEY, JSON.stringify(projects));
-    localStorage.setItem(LOCAL_STORAGE_TASKS_KEY, JSON.stringify(tasks));
-    localStorage.setItem(LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY, selectedProjectId);
 }
 
 function render() {
@@ -265,3 +260,9 @@ function convertHexToRGBA(hexCode, opacity) {
 }
 
 window.addEventListener('load', render);
+
+export {
+    projects,
+    tasks,
+    selectedProjectId
+}
